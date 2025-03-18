@@ -3,6 +3,7 @@
 
     <application
         android:usesCleartextTraffic="true"
+        android:allowBackup="false"
         tools:ignore="UnusedAttribute" />
 
 </manifest>

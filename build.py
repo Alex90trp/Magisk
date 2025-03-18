@@ -288,10 +288,14 @@ def build_rust_src(targets: set):
 def write_if_diff(file_name: Path, text: str):
     do_write = True
     if file_name.exists():
+        if "../" in str(file_name) or "..\\" in str(file_name):
+            raise Exception("Invalid file path")
         with open(file_name, "r") as f:
             orig = f.read()
         do_write = orig != text
     if do_write:
+        if "../" in str(file_name) or "..\\" in str(file_name):
+            raise Exception("Invalid file path") 
         with open(file_name, "w") as f:
             f.write(text)
 
@@ -692,6 +696,8 @@ def ensure_adb():
 
 def parse_props(file):
     props = {}
+    if "../" in str(file) or "..\\" in str(file):
+        raise Exception("Invalid file path")
     with open(file, "r") as f:
         for line in [l.strip(" \t\r\n") for l in f]:
             if line.startswith("#") or len(line) == 0:

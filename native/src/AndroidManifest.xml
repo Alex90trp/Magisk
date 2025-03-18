@@ -1,2 +1,4 @@
 <!-- This file exists only to make Android Studio happy -->
-<manifest/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:allowBackup="false" />
+</manifest>

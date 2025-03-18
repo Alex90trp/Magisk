@@ -325,7 +325,8 @@ def build_native():
     # Verify NDK install
     try:
         with open(Path(ndk_path, "ONDK_VERSION"), "r") as ondk_ver:
-            assert ondk_ver.read().strip(" \t\r\n") == config["ondkVersion"]
+            if ondk_ver.read().strip(" \t\r\n") != config["ondkVersion"]:
+                raise AssertionError("Unmatched NDK version")
     except:
         error('Unmatched NDK. Please install/upgrade NDK with "build.py ndk"')
 
